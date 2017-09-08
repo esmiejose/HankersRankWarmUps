@@ -1,0 +1,15 @@
+12:55:59 **** Build of configuration Debug for project HackersRankCPP ****
+make all 
+Building file: ../src/HackersRankCPP.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/HackersRankCPP.d" -MT"src/HackersRankCPP.d" -o "src/HackersRankCPP.o" "../src/HackersRankCPP.cpp"
+Finished building: ../src/HackersRankCPP.cpp
+ 
+Building target: HackersRankCPP
+Invoking: MacOS X C++ Linker
+g++  -o "HackersRankCPP"  ./src/HackersRankCPP.o   
+Finished building target: HackersRankCPP
+ 
+12:56:03 **** Incremental Build of configuration Debug for project HackersRankCPP ****
+make all 
+make: Nothing to be done for `all'.
