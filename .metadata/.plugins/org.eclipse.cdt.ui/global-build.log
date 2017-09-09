@@ -1,4 +1,4 @@
-12:55:59 **** Build of configuration Debug for project HackersRankCPP ****
+21:52:42 **** Incremental Build of configuration Debug for project HackersRankCPP ****
 make all 
 Building file: ../src/HackersRankCPP.cpp
 Invoking: GCC C++ Compiler
@@ -10,6 +10,3 @@ Invoking: MacOS X C++ Linker
 g++  -o "HackersRankCPP"  ./src/HackersRankCPP.o   
 Finished building target: HackersRankCPP
  
-12:56:03 **** Incremental Build of configuration Debug for project HackersRankCPP ****
-make all 
-make: Nothing to be done for `all'.
