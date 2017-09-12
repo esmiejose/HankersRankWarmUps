@@ -31,6 +31,22 @@
 #include <unordered_map>
 using namespace std;
 
+//challenge string - stringstream
+vector<int> parseInts(string str)
+{
+	vector<int> integers;
+	int x;
+	stringstream ss(str);
+	char comma;
+
+	while(ss >> x)
+	{
+		integers.push_back(x);
+		if(ss>>comma);
+	}
+	return integers;
+}
+
 //challenge 10- virtual funtions
 class Person
 {
@@ -300,8 +316,121 @@ int main() {
 		for(int i=0;i<n10;i++)
 			per[i]->putdata(); // Print the required output for each object.
 
+		//challenge string -1
+		string as,bs;
+		cin >>  as;
+		cin >>  bs;
+		cout << as.size() << " " << bs.size() << endl;
+		cout << as+bs << endl;
+		char t = as[0];
+		as[0] = bs[0];
+		bs[0] = t;
+		cout << as <<" "<< bs << endl;
+
+		//challenge string -2- stringstream
+
+		//Operator >> Extracts formatted data.
+		//Operator << Inserts formatted data.
+		//Method str() Gets the contents of underlying string device object.
+		//Method str(string) Sets the contents of underlying string device object.
+		//Its header file is sstream.
+		//One common use of this class is to parse comma-separated integers from a string (e.g., "23,4,56").
+		//stringstream ss("23,4,56");
+		//char ch;
+		//int a, b, c;
+		//ss >> a >> ch >> b >> ch >> c;  // a = 23, b = 4, c = 56
+
+
+		string str2;
+		cin >> str2;
+		vector<int> integers = parseInts(str2); //fns above
+		for(int i = 0; i < integers.size(); i++)
+		{
+			cout << integers[i] << "\n";
+		}
 
 
 
 	return 0;
+}
+
+class tag;
+class tag
+{
+    public:
+    std::map<std::string,tag*> mytags;
+    std::map<std::string,std::string> attributes;
+};
+
+//challenge string -3- Attribute Parser
+int parser(){
+
+    int N,Q;
+    cin >> N >> Q;
+    std::map<std::string,tag*> tags;
+    string line,x, attr,eq,val;
+
+    stack<tag*> tagstack;
+    for (int i = 0; i <= N; i++) //may be the prev line need to end one count high!
+    {
+
+        getline(std::cin, line);
+        //cout << line << endl;
+
+        stringstream ss(line);
+        if (!line.empty())
+        {
+            ss >> x;
+            //cout << x << endl;
+            if ( x.find("<") == 0 )
+            {
+                if (!(x.find("/") == 1))
+                {
+                    tag* a = new tag();
+                    string tagname(x.substr(1));
+                    if (tagstack.empty())
+                        tags[tagname] = a;
+                    else
+                        tagstack.top()->mytags[tagname]=a;
+
+                    tagstack.push(a);
+                    while(ss >> attr >> eq >> val){
+                        if (eq.compare("=") == 0)
+                            a->attributes[attr] = val;
+                    }
+                }
+                else
+                    tagstack.pop();
+            }
+        }
+    }
+
+    for (int i = 0; i < Q; i++) //may be the prev line need to end one count high!
+    {
+        stack<string> query;
+
+        getline(std::cin, line);
+        //cout << line << endl;
+        std::size_t found = line.find_last_of("~");
+        string val = line.substr (found+1);
+        //cout << val << endl;
+        line.erase(found, string::npos);
+        //cout << line << endl;
+        while(string::npos != line.find_last_of("."))
+        {
+            found =  line.find_last_of(".");
+            string q(line.substr (found+1));
+            query.push(q);
+            line.erase(found, string::npos);
+        }
+        string tagname (line);
+        tag* tag = tags[tagname];
+
+        while(!query.empty())
+        {
+            tag = tag->mytags[query.pop()];
+        }
+        cout << tag->attributes[val];
+
+    }
 }
